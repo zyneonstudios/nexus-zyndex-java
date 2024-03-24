@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/build-profiles.xsd"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variables></variables>
+    <build-profile instance="zyndex-docs">
+        <variables>
+            <noindex-content>false</noindex-content>
+            <offline-docs>true</offline-docs>
+            <download-title>Website</download-title>
+            <download-page>https://www.zyneonstudios.com/nexus/</download-page>
+            <showDownloadButton>true</showDownloadButton>
+        </variables>
+    </build-profile>
+
+</buildprofiles>
