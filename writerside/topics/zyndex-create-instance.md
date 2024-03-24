@@ -7,7 +7,7 @@ This will show you how to create an instance in a Zyndex.
 Depending on how you manage your Zyndex, open either an IDE, a file explorer or whatever you want to use to modify your Zyndex.
 
 ### 1.2: Open your Zyndex folder
-Open the `Zyndex` folder with your management tool/explorer.
+Open the `Zyndex` folder with your management tool or explorer.
 
 ### 1.3: Create instances folder
 If it doesn't already exist, create a new folder called "instances" in the `Zyndex` folder where the `index.json` is located.
@@ -18,8 +18,11 @@ Open the `instances` folder in your `Zyndex` folder.
 ## Step 2 - Create the instance json file
 
 ### 2.1: Create the instance path
+> **What is an ID?**<br>
+> An ID is a lower case alphanumeric and unique string to identify the instance without its name so that the name can be changed independently. This will be needed later, but it is best to plan it already.
+
 > **IDs and paths depend on each other!**<br>
-> The structure in the `instances` folder is determined by the instance IDs. This means that if an instance has a slash in the ID, it means that a folder must be created for each `/`.<br>
+> The structure in the `instances` folder is determined by the instance IDs. This means that if an instance has a slash in the ID a folder must be created for each `/`.<br>
 > If the instance should have the ID "example". Create a new file called “example.json” in your `instances` folder. If you want the instance ID to be "test/example", create a new folder called "test" in your `instances` folder and create the example.json in there.
 
 Create the required folders.<br>If your ID does not contain a slash (`/`) proceed with [Step 2.2](#2-2)!
@@ -228,7 +231,7 @@ Now your JSON should look something like this:
 
 ### 3.6: Recheck
 Now check all the values in your file again.<br>
-If you think all of them are correct, you're done creating your instance!
+If you think all of them are correct, proceed with adding the instance to your `index.json` ([step 3.7]()).
 
 > **WARNING: These are example values!**<br>
 > Your file should now look something like this:
@@ -266,3 +269,22 @@ If you think all of them are correct, you're done creating your instance!
   "scheme": "2024.3"
 }
 ```
+
+### 3.7 Add to index
+Go to your `index.json` in your `Zyndex` folder.
+Add your instance url (the location from the metadata) as a String to the "instances" array.
+
+> **WARNING: These are example values!**<br>
+> Your file should now look something like this:
+```
+{
+  "name": "Muster",
+  "url": "https://example.com/zyndex/index.json",
+  "owner": "Mustermann",
+  "instances": [
+    "https://example.com/zyndex/instances/example.json"
+  ]
+}
+```
+
+That's it! You've successfully created your instance!
