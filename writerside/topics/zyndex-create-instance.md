@@ -179,7 +179,7 @@ Now your JSON should look something like this:
 {collapsible="true"}
 
 ### 3.5: Provide versions information
-Add a new property to "instance" called "resources" and optionally define the following points:
+Add a new property to "instance" called "versions" and optionally define the following points:
 - `fabric`⁴: Define the Fabric version that the instance uses
 - `forge`²: Define the Forge version that the instance uses
 - `minecraft`¹: Define the Minecraft version that the instance uses
