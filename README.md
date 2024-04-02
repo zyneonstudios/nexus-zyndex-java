@@ -1,1 +1,1 @@
-# nexus-zyndex
+# Nexus Zyndex
