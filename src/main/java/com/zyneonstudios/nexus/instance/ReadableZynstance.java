@@ -28,7 +28,7 @@ public class ReadableZynstance implements Instance {
     private String location = null;
     private final String origin;
     private String version = null;
-    private String thumbnailUrl = null;
+    private String thumbnail = null;
     private String schemeVersion = null;
 
     private void init(String json) {
@@ -65,7 +65,7 @@ public class ReadableZynstance implements Instance {
                     logo = resources.get("logo").getAsString();
                 }
                 if (resources.get("thumbnail") != null) {
-                    thumbnailUrl = resources.get("thumbnail").getAsString();
+                    thumbnail = resources.get("thumbnail").getAsString();
                 }
             }
 
@@ -200,8 +200,8 @@ public class ReadableZynstance implements Instance {
     }
 
     @Override
-    public String getThumbnailIconUrl() {
-        return thumbnailUrl;
+    public String getThumbnailUrl() {
+        return thumbnail;
     }
 
     @Override

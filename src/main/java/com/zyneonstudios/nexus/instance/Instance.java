@@ -74,7 +74,7 @@ public interface Instance {
         return null;
     }
 
-    default String getThumbnailIconUrl() {
+    default String getThumbnailUrl() {
         return null;
     }
 

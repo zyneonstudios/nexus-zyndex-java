@@ -161,7 +161,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     @Override
-    public String getThumbnailIconUrl() {
+    public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
@@ -225,6 +225,10 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.iconUrl = iconUrl;
     }
 
+    public void setLocation(String locationUrl) {
+        this.location = locationUrl;
+    }
+
     public void setLogoUrl(String logoUrl) {
         config.set("instance.resources.logo",logoUrl);
         this.logoUrl = logoUrl;
@@ -243,5 +247,9 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setVersion(String version) {
         config.set("instance.info.version",version);
         this.version = version;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 }
