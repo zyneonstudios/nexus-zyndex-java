@@ -176,7 +176,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     public void setBackground(String background) {
-        config.set("instance.resources",background);
+        config.set("instance.resources.background",background);
         this.background = background;
     }
 
@@ -250,6 +250,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     public void setThumbnailUrl(String thumbnailUrl) {
+        config.set("instance.resources.thumbnail",thumbnailUrl);
         this.thumbnailUrl = thumbnailUrl;
     }
 }
