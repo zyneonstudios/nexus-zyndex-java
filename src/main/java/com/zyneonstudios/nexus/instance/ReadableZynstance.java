@@ -88,6 +88,7 @@ public class ReadableZynstance implements Instance {
             }
         } catch (Exception e) {
             Main.logger.error("Couldn't initialize ReadableZynstance - JSON Format error: "+e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

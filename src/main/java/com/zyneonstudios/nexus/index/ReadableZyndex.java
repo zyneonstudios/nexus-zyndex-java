@@ -32,6 +32,7 @@ public class ReadableZyndex implements Index {
             }
         } catch (Exception e) {
             Main.logger.error("Couldn't initialize ReadableZyndex - JSON Format error: "+e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
