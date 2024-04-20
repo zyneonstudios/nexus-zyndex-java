@@ -6,7 +6,7 @@
 
     <groupId>com.zyneonstudios</groupId>
     <artifactId>nexus-zyndex</artifactId>
-    <version>2024.4-beta.3</version>
+    <version>2024.4</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -14,21 +14,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>jitpack</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
-            <groupId>com.github.danieldieeins</groupId>
-            <artifactId>ShadeMeBaby</artifactId>
-            <version>2024.3.1</version>
+            <groupId>com.zyneonstudios</groupId>
+            <artifactId>nexus-smblib</artifactId>
+            <version>2024.4</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Repository</name>
+            <url>https://maven.pkg.github.com/zyneonstudios/zyneon-maven</url>
+        </repository>
+    </distributionManagement>
 
     <build>
         <resources>
@@ -38,6 +39,15 @@
             </resource>
         </resources>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <altDeploymentRepository>github::default::https://maven.pkg.github.com/zyneonstudios/zyneon-maven</altDeploymentRepository>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
