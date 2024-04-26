@@ -17,6 +17,7 @@ public class ReadableZynstance implements Instance {
     private String fabricVersion = null;
     private String forgeType = null;
     private String forgeVersion = null;
+    private String neoForgeVersion = null;
     private String quiltVersion = null;
     private String icon = null;
     private Boolean isHidden = null;
@@ -74,6 +75,9 @@ public class ReadableZynstance implements Instance {
             if (versions.get("fabric") != null) {
                 fabricVersion = versions.get("fabric").getAsString();
             }
+            if (versions.get("neoforge") != null) {
+                neoForgeVersion = versions.get("neoforge").getAsString();
+            }
             if (versions.get("quilt") != null) {
                 quiltVersion = versions.get("quilt").getAsString();
             }
@@ -89,6 +93,8 @@ public class ReadableZynstance implements Instance {
                 modloader = "Fabric";
             } else if (forgeType != null && forgeVersion != null) {
                 modloader = "Forge";
+            } else if (neoForgeVersion != null) {
+                modloader = "NeoForge";
             } else {
                 modloader = "Vanilla";
             }
@@ -199,6 +205,11 @@ public class ReadableZynstance implements Instance {
     @Override
     public String getOrigin() {
         return origin;
+    }
+
+    @Override
+    public String getNeoForgeVersion() {
+        return neoForgeVersion;
     }
 
     @Override

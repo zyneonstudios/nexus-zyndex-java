@@ -70,6 +70,10 @@ public interface Instance {
         return null;
     }
 
+    default String getNeoForgeVersion() {
+        return null;
+    }
+
     default String getQuiltVersion() {
         return null;
     }

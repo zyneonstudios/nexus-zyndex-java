@@ -25,6 +25,7 @@ public class ZynstanceBuilder {
     private String location = null;
     private String origin = null;
     private String quiltVersion = null;
+    private String neoForgeVersion = null;
     private String version = null;
     private String thumbnail = null;
     private final String schemeVersion = "2024.3";
@@ -146,6 +147,10 @@ public class ZynstanceBuilder {
         this.minecraftVersion = minecraftVersion;
     }
 
+    public void setNeoForgeVersion(String neoForgeVersion) {
+        this.neoForgeVersion = neoForgeVersion;
+    }
+
     public void setQuiltVersion(String quiltVersion) {
         this.quiltVersion = quiltVersion;
     }
@@ -219,6 +224,9 @@ public class ZynstanceBuilder {
             setVersionProperty(versionPath.forge,forgeVersion);
         }
         setVersionProperty(versionPath.minecraft,minecraftVersion);
+        if(neoForgeVersion!=null) {
+            setVersionProperty(versionPath.neoforge,neoForgeVersion);
+        }
         if(quiltVersion!=null) {
             setVersionProperty(versionPath.quilt,quiltVersion);
         }
@@ -253,6 +261,7 @@ public class ZynstanceBuilder {
         fabric,
         forge,
         minecraft,
+        neoforge,
         quilt
     }
 }
