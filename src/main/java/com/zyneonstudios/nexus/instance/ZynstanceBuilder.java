@@ -219,6 +219,10 @@ public class ZynstanceBuilder {
             setVersionProperty(versionPath.forge,forgeVersion);
         }
         setVersionProperty(versionPath.minecraft,minecraftVersion);
+        if(quiltVersion!=null) {
+            setVersionProperty(versionPath.quilt,quiltVersion);
+        }
+
         instance.set("scheme",schemeVersion);
     }
 
