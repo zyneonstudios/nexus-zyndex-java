@@ -70,6 +70,10 @@ public interface Instance {
         return null;
     }
 
+    default String getQuiltVersion() {
+        return null;
+    }
+
     default String getVersion() {
         return null;
     }

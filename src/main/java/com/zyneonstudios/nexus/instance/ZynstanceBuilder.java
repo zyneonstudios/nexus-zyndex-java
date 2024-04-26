@@ -24,6 +24,7 @@ public class ZynstanceBuilder {
     private String name = null;
     private String location = null;
     private String origin = null;
+    private String quiltVersion = null;
     private String version = null;
     private String thumbnail = null;
     private final String schemeVersion = "2024.3";
@@ -145,6 +146,10 @@ public class ZynstanceBuilder {
         this.minecraftVersion = minecraftVersion;
     }
 
+    public void setQuiltVersion(String quiltVersion) {
+        this.quiltVersion = quiltVersion;
+    }
+
     public void setInfoProperty(infoPath infoPath, String value) {
         instance.set("instance.info."+infoPath.toString(), value);
     }
@@ -243,6 +248,7 @@ public class ZynstanceBuilder {
     public enum versionPath {
         fabric,
         forge,
-        minecraft
+        minecraft,
+        quilt
     }
 }

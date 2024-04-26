@@ -17,6 +17,7 @@ public class ReadableZynstance implements Instance {
     private String fabricVersion = null;
     private String forgeType = null;
     private String forgeVersion = null;
+    private String quiltVersion = null;
     private String icon = null;
     private Boolean isHidden = null;
     private String id = null;
@@ -73,13 +74,18 @@ public class ReadableZynstance implements Instance {
             if (versions.get("fabric") != null) {
                 fabricVersion = versions.get("fabric").getAsString();
             }
+            if (versions.get("quilt") != null) {
+                quiltVersion = versions.get("quilt").getAsString();
+            }
             if (versions.get("forge") != null) {
                 forgeVersion = versions.get("forge").getAsString();
             }
             minecraftVersion = versions.get("minecraft").getAsString();
 
             this.schemeVersion = root.get("scheme").getAsString();
-            if (fabricVersion != null) {
+            if(quiltVersion != null) {
+                modloader = "Quilt";
+            } else if (fabricVersion != null) {
                 modloader = "Fabric";
             } else if (forgeType != null && forgeVersion != null) {
                 modloader = "Forge";
@@ -193,6 +199,11 @@ public class ReadableZynstance implements Instance {
     @Override
     public String getOrigin() {
         return origin;
+    }
+
+    @Override
+    public String getQuiltVersion() {
+        return quiltVersion;
     }
 
     @Override

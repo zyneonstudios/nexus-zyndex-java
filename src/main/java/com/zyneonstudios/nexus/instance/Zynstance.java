@@ -24,6 +24,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private String name;
     private String location;
     private final String origin;
+    private String quiltVersion;
     private String version;
     private String thumbnailUrl;
     private String schemeVersion;
@@ -44,10 +45,13 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.logoUrl = config.getString("instance.resources.logo");
         this.minecraftVersion = config.getString("instance.versions.minecraft");
         this.name = config.getString("instance.info.name");
+        this.quiltVersion = config.getString("instance.versions.quilt");
         this.version = config.getString("instance.info.version");
         this.thumbnailUrl = config.getString("instance.resources.thumbnail");
         this.schemeVersion = config.getString("scheme");
-        if(fabricVersion!=null) {
+        if(quiltVersion!=null) {
+            modloader = "Quilt";
+        } else if(fabricVersion!=null) {
             modloader = "Fabric";
         } else if(forgeType!=null&&forgeVersion!=null) {
             modloader = "Forge";
@@ -156,6 +160,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     @Override
+    public String getQuiltVersion() {
+        return quiltVersion;
+    }
+
+    @Override
     public String getVersion() {
         return version;
     }
@@ -242,6 +251,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setName(String name) {
         config.set("instance.info.name",name);
         this.name = name;
+    }
+
+    public void setQuiltVersion(String quiltVersion) {
+        config.set("instance.versions.quilt",quiltVersion);
+        this.quiltVersion = quiltVersion;
     }
 
     public void setVersion(String version) {
