@@ -1,6 +1,8 @@
 package com.zyneonstudios.nexus.index;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
 import live.nerotv.shademebaby.file.Config;
 
@@ -98,13 +100,14 @@ public class Zyndex extends ReadableZyndex {
     public void setInstances(ArrayList<ReadableZynstance> instances) {
         json.delete("instances");
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonArray array = gson.fromJson("[]",JsonArray.class);
+        JsonArray array = new JsonArray();
         if(!instances.isEmpty()) {
             for (ReadableZynstance zynstance : instances) {
                 array.add(zynstance.getLocation());
             }
         }
         zynstances = instances;
+        json.set("instances",array);
         System.gc();
     }
 
