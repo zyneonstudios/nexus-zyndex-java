@@ -19,6 +19,10 @@ public class Zyndex extends ReadableZyndex {
     private ArrayList<ReadableZynstance> zynstances;
 
     private void init() {
+        json.checkEntry("name","unknown");
+        json.checkEntry("name","url");
+        json.checkEntry("name","owner");
+
         name = json.getString("name");
         url = json.getString("url");
         owner = json.getString("owner");

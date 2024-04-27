@@ -6,7 +6,7 @@
 
     <groupId>com.zyneonstudios</groupId>
     <artifactId>nexus-zyndex</artifactId>
-    <version>2024.4.2.1</version>
+    <version>2024.4.3</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -16,7 +16,7 @@
 
     <repositories>
         <repository>
-            <id>zyneon</id>
+            <id>github</id>
             <url>https://maven.pkg.github.com/zyneonstudios/zyneon-maven</url>
         </repository>
     </repositories>
