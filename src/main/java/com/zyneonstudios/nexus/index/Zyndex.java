@@ -19,13 +19,15 @@ public class Zyndex extends ReadableZyndex {
     private ArrayList<ReadableZynstance> zynstances;
 
     private void init() {
-        json.checkEntry("name","unknown");
-        json.checkEntry("name","url");
-        json.checkEntry("name","owner");
+        json.checkEntry("name","unnamed zynstance");
+        json.checkEntry("url","null");
+        json.checkEntry("owner","unknown");
+        json.checkEntry("instances",new JsonArray());
 
         name = json.getString("name");
         url = json.getString("url");
         owner = json.getString("owner");
+
         this.zynstances = super.getInstances();
     }
 
