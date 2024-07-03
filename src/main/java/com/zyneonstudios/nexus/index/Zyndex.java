@@ -1,36 +1,37 @@
 package com.zyneonstudios.nexus.index;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
+import com.zyneonstudios.nexus.modules.ReadableModule;
 import live.nerotv.shademebaby.file.Config;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Zyndex extends ReadableZyndex {
+public class Zyndex extends ReadableZyndex implements Index {
 
     private Config json;
 
     private String name = "";
     private String url = "";
     private String owner = "";
-
     private ArrayList<ReadableZynstance> zynstances;
+    private ArrayList<ReadableModule> modules;
 
     private void init() {
         json.checkEntry("name","unnamed zynstance");
         json.checkEntry("url","null");
         json.checkEntry("owner","unknown");
         json.checkEntry("instances",new JsonArray());
+        json.checkEntry("modules",new JsonArray());
 
         name = json.getString("name");
         url = json.getString("url");
         owner = json.getString("owner");
 
         this.zynstances = super.getInstances();
+        this.modules = super.getModules();
     }
 
     public Zyndex(File json) {
@@ -70,16 +71,26 @@ public class Zyndex extends ReadableZyndex {
     }
 
     @Override
-    public HashMap<String, ReadableZynstance> getZynstances() {
-        HashMap<String, ReadableZynstance> zynstances = new HashMap<>();
+    public HashMap<String, ReadableZynstance> getInstancesById() {
+        HashMap<String,ReadableZynstance> zynstances = new HashMap<>();
         for(ReadableZynstance zynstance:this.zynstances) {
             zynstances.put(zynstance.getId(),zynstance);
         }
         return zynstances;
     }
 
-    public void setJson(Config newJson) {
-        this.json = newJson;
+    @Override
+    public ArrayList<ReadableModule> getModules() {
+        return modules;
+    }
+
+    @Override
+    public HashMap<String, ReadableModule> getModulesById() {
+        HashMap<String,ReadableModule> modules = new HashMap<>();
+        for(ReadableModule module:this.modules) {
+            modules.put(module.getId(),module);
+        }
+        return modules;
     }
 
     public void setName(String newName) {
@@ -99,7 +110,6 @@ public class Zyndex extends ReadableZyndex {
 
     public void setInstances(ArrayList<ReadableZynstance> instances) {
         json.delete("instances");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray array = new JsonArray();
         if(!instances.isEmpty()) {
             for (ReadableZynstance zynstance : instances) {
@@ -123,5 +133,32 @@ public class Zyndex extends ReadableZyndex {
         ArrayList<ReadableZynstance> instances = zynstances;
         instances.remove(zynstance);
         setInstances(instances);
+    }
+
+    public void setModules(ArrayList<ReadableModule> modules) {
+        json.delete("modules");
+        JsonArray array = new JsonArray();
+        if(!modules.isEmpty()) {
+            for (ReadableModule module : modules) {
+                array.add(module.getLocation());
+            }
+        }
+        this.modules = modules;
+        json.set("modules",array);
+        System.gc();
+    }
+
+    public void addInstance(ReadableModule module) {
+        ArrayList<ReadableModule> modules = this.modules;
+        if(!modules.contains(module)) {
+            modules.add(module);
+        }
+        setModules(modules);
+    }
+
+    public void removeInstance(ReadableModule module) {
+        ArrayList<ReadableModule> modules = this.modules;
+        modules.remove(module);
+        setModules(modules);
     }
 }

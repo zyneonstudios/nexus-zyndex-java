@@ -3,6 +3,7 @@ package com.zyneonstudios.nexus.index;
 import com.google.gson.*;
 import com.zyneonstudios.nexus.Main;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
+import com.zyneonstudios.nexus.modules.ReadableModule;
 import live.nerotv.shademebaby.utils.GsonUtil;
 
 import java.io.File;
@@ -16,6 +17,7 @@ public class ReadableZyndex implements Index {
     private String url = null;
     private String owner = null;
     private ArrayList<ReadableZynstance> zynstances;
+    private ArrayList<ReadableModule> modules;
 
     private void init(String json) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -29,6 +31,12 @@ public class ReadableZyndex implements Index {
             JsonArray array = json1.get("instances").getAsJsonArray();
             for(JsonElement e:array) {
                 this.zynstances.add(new ReadableZynstance(e.getAsString()));
+            }
+
+            this.modules = new ArrayList<>();
+            JsonArray modules = json1.get("modules").getAsJsonArray();
+            for(JsonElement e:array) {
+                this.modules.add(new ReadableModule(e.getAsString()));
             }
         } catch (Exception e) {
             Main.logger.error("Couldn't initialize ReadableZyndex - JSON Format error: "+e.getMessage());
@@ -80,11 +88,25 @@ public class ReadableZyndex implements Index {
     }
 
     @Override
-    public HashMap<String, ReadableZynstance> getZynstances() {
-        HashMap<String, ReadableZynstance> zynstances = new HashMap<>();
+    public HashMap<String, ReadableZynstance> getInstancesById() {
+        HashMap<String,ReadableZynstance> zynstances = new HashMap<>();
         for(ReadableZynstance zynstance:this.zynstances) {
             zynstances.put(zynstance.getId(),zynstance);
         }
         return zynstances;
+    }
+
+    @Override
+    public ArrayList<ReadableModule> getModules() {
+        return modules;
+    }
+
+    @Override
+    public HashMap<String, ReadableModule> getModulesById() {
+        HashMap<String,ReadableModule> modules = new HashMap<>();
+        for(ReadableModule module:this.modules) {
+            modules.put(module.getId(),module);
+        }
+        return modules;
     }
 }

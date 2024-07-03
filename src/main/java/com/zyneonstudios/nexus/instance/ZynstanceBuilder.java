@@ -3,32 +3,37 @@ package com.zyneonstudios.nexus.instance;
 import live.nerotv.shademebaby.file.Config;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ZynstanceBuilder {
 
     private final Config instance;
-    private String author = null;
+    private ArrayList<String> authors = null;
     private String background = null;
-    private String description = null;
-    private String downloadUrl = null;
+    private String description = "This is an unknown instance for which there is no description.";
+    private String downloadUrl = "no url";
     private String fabricVersion = null;
     private String forgeType = null;
     private String forgeVersion = null;
     private String icon = null;
-    private Boolean isHidden = null;
-    private String id = null;
-    private String indexUrl = null;
+    private boolean isEditable = false;
+    private boolean isHidden = true;
+    private String id = "unknown";
+    private String indexUrl = "no index";
     private String logo = null;
-    private String minecraftVersion = null;
-    private String modloader = null;
-    private String name = null;
+    private String minecraftVersion = "1.21";
+    private String name = "Unknown";
     private String location = null;
-    private String origin = null;
+    private String origin = "no origin";
     private String quiltVersion = null;
     private String neoForgeVersion = null;
-    private String version = null;
+    private String version = new SimpleDateFormat("yyyy.M.d").format(Calendar.getInstance().getTime());;
+    private final String schemeVersion = "2024.6";
+    private String summary = "This is an unknown instance for which there is no summary.";
+    private ArrayList<String> tags = null;
     private String thumbnail = null;
-    private final String schemeVersion = "2024.3";
 
     public ZynstanceBuilder(String path) {
         if(path.toLowerCase().endsWith(".json")) {
@@ -54,45 +59,46 @@ public class ZynstanceBuilder {
     }
 
     private void init() {
-        author = "Unknown";
-        instance.set("instance.info.author",author);
-        description = "No description";
-        instance.set("instance.info.description",description);
-        name = "Unknown";
+        ArrayList<String> a = new ArrayList<>();
+        a.add("Anonymous");
+        authors = a;
+
+        instance.set("instance.info.authors",authors);
         instance.set("instance.info.name",name);
-        version = "unknown";
+        instance.set("instance.info.summary",summary);
         instance.set("instance.info.version",version);
 
-        downloadUrl = "unknownUrl";
+        instance.set("instance.meta.description",description);
         instance.set("instance.meta.download",downloadUrl);
-
-        id = "unknown";
         instance.set("instance.meta.id",id);
-        isHidden = true;
+        instance.set("instance.meta.isEditable",isEditable);
         instance.set("instance.meta.isHidden",isHidden);
-        location = "unknownUrl";
+        location = "file://"+instance.getJsonFile().getAbsolutePath().replace("\\\\","\\").replace("\\","/");
         instance.set("instance.meta.location",location);
-        indexUrl = "unknownUrl";
+        origin = location;
         instance.set("instance.meta.origin",indexUrl);
-
-        minecraftVersion = "unknown";
-        instance.set("instance.versions.minecraft",minecraftVersion);
+        tags = new ArrayList<>();
+        instance.set("instance.meta.tags",tags);
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAuthors(ArrayList<String> authors) {
+        this.authors = authors;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setDownloadUrl(String downloadUrl) {
@@ -107,7 +113,11 @@ public class ZynstanceBuilder {
         this.id = id;
     }
 
-    public void setHidden(Boolean hidden) {
+    public void setEditable(boolean editable) {
+        isEditable = editable;
+    }
+
+    public void setHidden(boolean hidden) {
         isHidden = hidden;
     }
 
@@ -117,6 +127,10 @@ public class ZynstanceBuilder {
 
     public void setOriginUrl(String indexUrl) {
         this.indexUrl = indexUrl;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
     public void setBackgroundUrl(String imageUrl) {
@@ -155,7 +169,7 @@ public class ZynstanceBuilder {
         this.quiltVersion = quiltVersion;
     }
 
-    public void setInfoProperty(infoPath infoPath, String value) {
+    public void setInfoProperty(infoPath infoPath, Object value) {
         instance.set("instance.info."+infoPath.toString(), value);
     }
 
@@ -190,19 +204,22 @@ public class ZynstanceBuilder {
     }
 
     private void write() {
-        setInfoProperty(infoPath.author,author);
-        setInfoProperty(infoPath.description,description);
+        setInfoProperty(infoPath.authors,authors);
         setInfoProperty(infoPath.name,name);
+        setInfoProperty(infoPath.summary,summary);
         setInfoProperty(infoPath.version,version);
 
+        setMetaProperty(metaPath.description,description);
         setMetaProperty(metaPath.download,downloadUrl);
         if(forgeType!=null) {
             setMetaProperty(metaPath.forgeType,forgeType);
         }
         setMetaProperty(metaPath.id,id);
+        setMetaProperty(metaPath.isEditable,isEditable);
         setMetaProperty(metaPath.isHidden,isHidden);
         setMetaProperty(metaPath.location,location);
         setMetaProperty(metaPath.origin,indexUrl);
+        setMetaProperty(metaPath.tags,tags);
 
         if(background!=null) {
             setResourceProperty(resourcePath.background, background);
@@ -235,19 +252,22 @@ public class ZynstanceBuilder {
     }
 
     public enum infoPath {
-        author,
-        description,
+        authors,
         name,
+        summary,
         version
     }
 
     public enum metaPath {
+        description,
         download,
         forgeType,
         id,
+        isEditable,
         isHidden,
         location,
-        origin
+        origin,
+        tags
     }
 
     public enum resourcePath {

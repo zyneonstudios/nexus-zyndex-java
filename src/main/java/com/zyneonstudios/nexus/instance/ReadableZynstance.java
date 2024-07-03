@@ -2,15 +2,17 @@ package com.zyneonstudios.nexus.instance;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.zyneonstudios.nexus.Main;
 import live.nerotv.shademebaby.utils.GsonUtil;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class ReadableZynstance implements Instance {
 
-    private String author = null;
+    private ArrayList<String> authors = null;
     private String background = null;
     private String description = null;
     private String downloadUrl = null;
@@ -20,6 +22,7 @@ public class ReadableZynstance implements Instance {
     private String neoForgeVersion = null;
     private String quiltVersion = null;
     private String icon = null;
+    private Boolean isEditable = null;
     private Boolean isHidden = null;
     private String id = null;
     private String indexUrl = null;
@@ -30,6 +33,8 @@ public class ReadableZynstance implements Instance {
     private String location = null;
     private final String origin;
     private String version = null;
+    private String summary = null;
+    private ArrayList<String> tags = null;
     private String thumbnail = null;
     private String schemeVersion = null;
 
@@ -40,20 +45,31 @@ public class ReadableZynstance implements Instance {
             JsonObject json1 = root.get("instance").getAsJsonObject();
 
             JsonObject info = json1.get("info").getAsJsonObject();
-            author = info.get("author").getAsString();
-            description = info.get("description").getAsString();
+            ArrayList<String> authors = new ArrayList<>();
+            for(JsonElement element:info.get("authors").getAsJsonArray()) {
+                authors.add(element.getAsString());
+            }
+            this.authors = authors;
             name = info.get("name").getAsString();
+            summary = info.get("summary").getAsString();
             version = info.get("version").getAsString();
 
             JsonObject meta = json1.get("meta").getAsJsonObject();
+            description = meta.get("description").getAsString();
             downloadUrl = meta.get("download").getAsString();
             if (meta.get("forgeType") != null) {
                 forgeType = meta.get("forgeType").getAsString();
             }
+            isEditable = meta.get("isEditable").getAsBoolean();
             isHidden = meta.get("isHidden").getAsBoolean();
             id = meta.get("id").getAsString();
             indexUrl = meta.get("origin").getAsString();
             location = meta.get("location").getAsString();
+            ArrayList<String> tags = new ArrayList<>();
+            for(JsonElement element:meta.get("tags").getAsJsonArray()) {
+                tags.add(element.getAsString());
+            }
+            this.tags = tags;
 
             if (json1.get("resources") != null) {
                 JsonObject resources = json1.get("resources").getAsJsonObject();
@@ -124,7 +140,12 @@ public class ReadableZynstance implements Instance {
 
     @Override
     public String getAuthor() {
-        return author;
+        return authors.toString().replace("[","").replace("]","");
+    }
+
+    @Override
+    public ArrayList<String> getAuthors() {
+        return authors;
     }
 
     @Override
@@ -155,6 +176,11 @@ public class ReadableZynstance implements Instance {
     @Override
     public String getForgeVersion() {
         return forgeVersion;
+    }
+
+    @Override
+    public Boolean isEditable() {
+        return isEditable;
     }
 
     @Override
@@ -218,8 +244,23 @@ public class ReadableZynstance implements Instance {
     }
 
     @Override
+    public String getSummary() {
+        return summary;
+    }
+
+    @Override
     public String getVersion() {
         return version;
+    }
+
+    @Override
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    @Override
+    public String getTagString() {
+        return tags.toString().replace("[","").replace("]","");
     }
 
     @Override

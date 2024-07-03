@@ -3,10 +3,11 @@ package com.zyneonstudios.nexus.instance;
 import live.nerotv.shademebaby.file.Config;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class Zynstance extends ReadableZynstance implements Instance {
 
-    private String author;
+    private ArrayList<String> authors;
     private String background;
     private final Config config;
     private String description;
@@ -15,7 +16,8 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private String forgeType;
     private String forgeVersion;
     private String iconUrl;
-    private Boolean isHidden;
+    private boolean isEditable;
+    private boolean isHidden;
     private String id;
     private String indexUrl;
     private String logoUrl;
@@ -27,18 +29,21 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private String neoForgeVersion;
     private String quiltVersion;
     private String version;
-    private String thumbnailUrl;
     private String schemeVersion;
+    private String summary;
+    private ArrayList<String> tags;
+    private String thumbnailUrl;
 
     private void init() {
-        this.author = config.getString("instance.info.author");
+        this.authors = (ArrayList<String>)config.get("instance.info.authors");
         this.background = config.getString("instance.resources.background");
-        this.description = config.getString("instance.info.description");
+        this.description = config.getString("instance.meta.description");
         this.downloadUrl = config.getString("instance.meta.download");
         this.fabricVersion = config.getString("instance.versions.fabric");
         this.forgeType = config.getString("instance.meta.forgeType");
         this.forgeVersion = config.getString("instance.versions.forge");
         this.iconUrl = config.getString("instance.resources.icon");
+        this.isEditable = config.getBoolean("instance.meta.isEditable");
         this.isHidden = config.getBoolean("instance.meta.isHidden");
         this.id = config.getString("instance.meta.id");
         this.location = config.getString("instance.meta.location");
@@ -49,8 +54,10 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.neoForgeVersion = config.getString("instance.versions.neoforge");
         this.quiltVersion = config.getString("instance.versions.quilt");
         this.version = config.getString("instance.info.version");
-        this.thumbnailUrl = config.getString("instance.resources.thumbnail");
+        this.summary = config.getString("instance.info.summary");
         this.schemeVersion = config.getString("scheme");
+        this.tags = (ArrayList<String>)config.get("instance.meta.tags");
+        this.thumbnailUrl = config.getString("instance.resources.thumbnail");
         if(quiltVersion!=null) {
             modloader = "Quilt";
         } else if(fabricVersion!=null) {
@@ -80,7 +87,12 @@ public class Zynstance extends ReadableZynstance implements Instance {
 
     @Override
     public String getAuthor() {
-        return author;
+        return authors.toString().replace("[","").replace("]","");
+    }
+
+    @Override
+    public ArrayList<String> getAuthors() {
+        return authors;
     }
 
     @Override
@@ -111,6 +123,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     @Override
     public String getForgeVersion() {
         return forgeVersion;
+    }
+
+    @Override
+    public Boolean isEditable() {
+        return super.isEditable();
     }
 
     @Override
@@ -179,18 +196,33 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     @Override
-    public String getThumbnailUrl() {
-        return thumbnailUrl;
-    }
-
-    @Override
     public String getSchemeVersion() {
         return schemeVersion;
     }
 
-    public void setAuthor(String author) {
-        config.set("instance.info.author",author);
-        this.author = author;
+    @Override
+    public String getSummary() {
+        return summary;
+    }
+
+    @Override
+    public ArrayList<String> getTags() {
+        return tags;
+    }
+
+    @Override
+    public String getTagString() {
+        return tags.toString().replace("[","").replace("]","");
+    }
+
+    @Override
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setAuthors(ArrayList<String> authors) {
+        config.set("instance.info.author",authors);
+        this.authors = authors;
     }
 
     public void setBackground(String background) {
@@ -199,7 +231,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     public void setDescription(String description) {
-        config.set("instance.info.description",description);
+        config.set("instance.meta.description",description);
         this.description = description;
     }
 
@@ -221,6 +253,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setForgeVersion(String forgeVersion) {
         config.set("instance.versions.forge",forgeVersion);
         this.forgeVersion = forgeVersion;
+    }
+
+    public void setEditable(Boolean editable) {
+        config.set("instance.meta.isEditable",editable);
+        isEditable = editable;
     }
 
     public void setHidden(Boolean hidden) {
@@ -275,6 +312,16 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setVersion(String version) {
         config.set("instance.info.version",version);
         this.version = version;
+    }
+
+    public void setSummary(String summary) {
+        config.set("instance.info.summary",summary);
+        this.summary = summary;
+    }
+
+    public void setTags(ArrayList<String> tags) {
+        config.set("instance.meta.tags",tags);
+        this.tags = tags;
     }
 
     public void setThumbnailUrl(String thumbnailUrl) {

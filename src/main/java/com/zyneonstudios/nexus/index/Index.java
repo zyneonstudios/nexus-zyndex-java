@@ -1,6 +1,7 @@
 package com.zyneonstudios.nexus.index;
 
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
+import com.zyneonstudios.nexus.modules.ReadableModule;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +28,15 @@ public interface Index {
         return null;
     }
 
-    default HashMap<String,ReadableZynstance> getZynstances() {
+    default HashMap<String,ReadableZynstance> getInstancesById() {
+        return null;
+    }
+
+    default ArrayList<ReadableModule> getModules() {
+        return null;
+    }
+
+    default HashMap<String,ReadableModule> getModulesById() {
         return null;
     }
 }

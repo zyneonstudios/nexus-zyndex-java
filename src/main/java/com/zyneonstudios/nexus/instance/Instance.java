@@ -1,8 +1,14 @@
 package com.zyneonstudios.nexus.instance;
 
+import java.util.ArrayList;
+
 public interface Instance {
 
     default String getAuthor() {
+        return null;
+    }
+
+    default ArrayList<String> getAuthors() {
         return null;
     }
 
@@ -31,6 +37,10 @@ public interface Instance {
     }
 
     default String getIconUrl() {
+        return null;
+    }
+
+    default Boolean isEditable() {
         return null;
     }
 
@@ -75,6 +85,18 @@ public interface Instance {
     }
 
     default String getQuiltVersion() {
+        return null;
+    }
+
+    default String getSummary() {
+        return null;
+    }
+
+    default ArrayList<String> getTags() {
+        return null;
+    }
+
+    default String getTagString() {
         return null;
     }
 
