@@ -6,7 +6,7 @@
 
     <groupId>com.zyneonstudios</groupId>
     <artifactId>nexus-zyndex</artifactId>
-    <version>2024.7.1</version>
+    <version>2024.7.2</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -27,16 +27,42 @@ public class ReadableZyndex implements Index {
             this.url = json1.get("url").getAsString();
             this.owner = json1.get("owner").getAsString();
 
-            this.zynstances = new ArrayList<>();
-            JsonArray array = json1.get("instances").getAsJsonArray();
-            for(JsonElement e:array) {
-                this.zynstances.add(new ReadableZynstance(e.getAsString()));
+            try {
+                this.zynstances = new ArrayList<>();
+                JsonArray array = json1.get("instances").getAsJsonArray();
+                if(array!=null) {
+                    if(!array.isEmpty()) {
+                        for(JsonElement e:array) {
+                            try {
+                                this.zynstances.add(new ReadableZynstance(e.getAsString()));
+                            } catch (Exception er) {
+                                Main.logger.error("Couldn't initialize instance from index list: "+er.getMessage());
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Main.logger.error("Couldn't initialize index instances: "+e.getMessage());
+                this.zynstances = new ArrayList<>();
             }
 
-            this.modules = new ArrayList<>();
-            JsonArray modules = json1.get("modules").getAsJsonArray();
-            for(JsonElement e:array) {
-                this.modules.add(new ReadableModule(e.getAsString()));
+            try {
+                this.modules = new ArrayList<>();
+                JsonArray modules = json1.get("modules").getAsJsonArray();
+                if(modules!=null) {
+                    if(!modules.isEmpty()) {
+                        for(JsonElement e:modules) {
+                            try {
+                                this.modules.add(new ReadableModule(e.getAsString()));
+                            } catch (Exception er) {
+                                Main.logger.error("Couldn't initialize module from index list: "+er.getMessage());
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Main.logger.error("Couldn't initialize index modules: "+e.getMessage());
+                this.modules = new ArrayList<>();
             }
         } catch (Exception e) {
             Main.logger.error("Couldn't initialize ReadableZyndex - JSON Format error: "+e.getMessage());
