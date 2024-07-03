@@ -59,7 +59,7 @@ public class ReadableModule implements Module {
             info_name = info.get("name").getAsString();
             info_version = info.get("version").getAsString();
 
-            JsonObject meta = json.getAsJsonObject("info");
+            JsonObject meta = json.getAsJsonObject("meta");
             if(meta.has("changelogs")) {
                 ArrayList<String> changelogs = new ArrayList<>();
                 for(JsonElement changelog:meta.getAsJsonArray("changelogs")) {
