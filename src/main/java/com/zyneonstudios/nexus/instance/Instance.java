@@ -56,6 +56,14 @@ public interface Instance {
         return null;
     }
 
+    default String getInfoCard() {
+        return null;
+    }
+
+    default String getInfoText() {
+        return null;
+    }
+
     default String getLogoUrl() {
         return null;
     }

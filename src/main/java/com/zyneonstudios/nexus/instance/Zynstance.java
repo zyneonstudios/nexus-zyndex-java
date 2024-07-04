@@ -20,6 +20,8 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private boolean isHidden;
     private String id;
     private String indexUrl;
+    private String infoCard;
+    private String infoText;
     private String logoUrl;
     private String minecraftVersion;
     private String modloader;
@@ -48,6 +50,8 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.id = config.getString("instance.meta.id");
         this.location = config.getString("instance.meta.location");
         this.indexUrl = config.getString("instance.meta.origin");
+        this.infoCard = config.getString("instance.meta.infoCard");
+        this.infoText = config.getString("instance.meta.infoText");
         this.logoUrl = config.getString("instance.resources.logo");
         this.minecraftVersion = config.getString("instance.versions.minecraft");
         this.name = config.getString("instance.info.name");
@@ -127,7 +131,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
 
     @Override
     public Boolean isEditable() {
-        return super.isEditable();
+        return isEditable;
     }
 
     @Override
@@ -148,6 +152,16 @@ public class Zynstance extends ReadableZynstance implements Instance {
     @Override
     public String getIndexUrl() {
         return indexUrl;
+    }
+
+    @Override
+    public String getInfoCard() {
+        return infoCard;
+    }
+
+    @Override
+    public String getInfoText() {
+        return infoText;
     }
 
     @Override

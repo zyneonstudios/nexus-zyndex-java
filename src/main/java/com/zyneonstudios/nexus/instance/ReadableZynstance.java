@@ -26,6 +26,8 @@ public class ReadableZynstance implements Instance {
     private Boolean isHidden = null;
     private String id = null;
     private String indexUrl = null;
+    private String infoCard = null;
+    private String infoText = null;
     private String logo = null;
     private String minecraftVersion = null;
     private String modloader = null;
@@ -63,6 +65,12 @@ public class ReadableZynstance implements Instance {
             isEditable = meta.get("isEditable").getAsBoolean();
             isHidden = meta.get("isHidden").getAsBoolean();
             id = meta.get("id").getAsString();
+            if(meta.has("infoCard")) {
+                infoCard = meta.get("infoCard").getAsString();
+            }
+            if(meta.has("infoText")) {
+                infoText = meta.get("infoText").getAsString();
+            }
             indexUrl = meta.get("origin").getAsString();
             location = meta.get("location").getAsString();
             ArrayList<String> tags = new ArrayList<>();
@@ -196,6 +204,16 @@ public class ReadableZynstance implements Instance {
     @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String getInfoCard() {
+        return infoCard;
+    }
+
+    @Override
+    public String getInfoText() {
+        return infoText;
     }
 
     @Override

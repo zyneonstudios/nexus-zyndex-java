@@ -21,6 +21,8 @@ public class ZynstanceBuilder {
     private boolean isEditable = false;
     private boolean isHidden = true;
     private String id = "unknown";
+    private String infoCard = null;
+    private String infoText = null;
     private String indexUrl = "no index";
     private String logo = null;
     private String minecraftVersion = "1.21";
@@ -127,6 +129,14 @@ public class ZynstanceBuilder {
 
     public void setOriginUrl(String indexUrl) {
         this.indexUrl = indexUrl;
+    }
+
+    public void setInfoCard(String infoCard) {
+        this.infoCard = infoCard;
+    }
+
+    public void setInfoText(String infoText) {
+        this.infoText = infoText;
     }
 
     public void setTags(ArrayList<String> tags) {
@@ -265,6 +275,8 @@ public class ZynstanceBuilder {
         id,
         isEditable,
         isHidden,
+        infoCard,
+        infoText,
         location,
         origin,
         tags
