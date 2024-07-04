@@ -16,6 +16,10 @@ public interface Instance {
         return null;
     }
 
+    default ArrayList<String> getChangelogs() {
+        return null;
+    }
+
     default String getDescription() {
         return null;
     }
@@ -109,6 +113,10 @@ public interface Instance {
     }
 
     default String getVersion() {
+        return null;
+    }
+
+    default ArrayList<String> getVersions() {
         return null;
     }
 

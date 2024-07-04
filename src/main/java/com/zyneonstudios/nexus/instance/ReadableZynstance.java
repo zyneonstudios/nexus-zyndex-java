@@ -14,6 +14,7 @@ public class ReadableZynstance implements Instance {
 
     private ArrayList<String> authors = null;
     private String background = null;
+    private ArrayList<String> changelogs = new ArrayList<>();
     private String description = null;
     private String downloadUrl = null;
     private String fabricVersion = null;
@@ -35,8 +36,9 @@ public class ReadableZynstance implements Instance {
     private String location = null;
     private final String origin;
     private String version = null;
+    private ArrayList<String> versions = new ArrayList<>();
     private String summary = null;
-    private ArrayList<String> tags = null;
+    private ArrayList<String> tags = new ArrayList<>();
     private String thumbnail = null;
     private String schemeVersion = null;
 
@@ -57,6 +59,12 @@ public class ReadableZynstance implements Instance {
             version = info.get("version").getAsString();
 
             JsonObject meta = json1.get("meta").getAsJsonObject();
+            if(meta.has("changelogs")) {
+                changelogs = new ArrayList<>();
+                for (JsonElement element : meta.get("changelogs").getAsJsonArray()) {
+                    changelogs.add(element.getAsString());
+                }
+            }
             description = meta.get("description").getAsString();
             downloadUrl = meta.get("download").getAsString();
             if (meta.get("forgeType") != null) {
@@ -73,11 +81,18 @@ public class ReadableZynstance implements Instance {
             }
             indexUrl = meta.get("origin").getAsString();
             location = meta.get("location").getAsString();
-            ArrayList<String> tags = new ArrayList<>();
-            for(JsonElement element:meta.get("tags").getAsJsonArray()) {
-                tags.add(element.getAsString());
+            if(meta.has("tags")) {
+                tags = new ArrayList<>();
+                for (JsonElement element : meta.get("tags").getAsJsonArray()) {
+                    tags.add(element.getAsString());
+                }
             }
-            this.tags = tags;
+            if(meta.has("versions")) {
+                versions = new ArrayList<>();
+                for (JsonElement element : meta.get("versions").getAsJsonArray()) {
+                    versions.add(element.getAsString());
+                }
+            }
 
             if (json1.get("resources") != null) {
                 JsonObject resources = json1.get("resources").getAsJsonObject();
@@ -162,6 +177,11 @@ public class ReadableZynstance implements Instance {
     }
 
     @Override
+    public ArrayList<String> getChangelogs() {
+        return changelogs;
+    }
+
+    @Override
     public String getDescription() {
         return description;
     }
@@ -207,6 +227,11 @@ public class ReadableZynstance implements Instance {
     }
 
     @Override
+    public String getIndexUrl() {
+        return indexUrl;
+    }
+
+    @Override
     public String getInfoCard() {
         return infoCard;
     }
@@ -217,8 +242,8 @@ public class ReadableZynstance implements Instance {
     }
 
     @Override
-    public String getIndexUrl() {
-        return indexUrl;
+    public ArrayList<String> getVersions() {
+        return versions;
     }
 
     @Override

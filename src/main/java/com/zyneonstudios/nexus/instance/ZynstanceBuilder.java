@@ -12,6 +12,7 @@ public class ZynstanceBuilder {
     private final Config instance;
     private ArrayList<String> authors = null;
     private String background = null;
+    private ArrayList<String> changelogs = null;
     private String description = "This is an unknown instance for which there is no description.";
     private String downloadUrl = "no url";
     private String fabricVersion = null;
@@ -32,6 +33,7 @@ public class ZynstanceBuilder {
     private String quiltVersion = null;
     private String neoForgeVersion = null;
     private String version = new SimpleDateFormat("yyyy.M.d").format(Calendar.getInstance().getTime());;
+    private ArrayList<String> versions = null;
     private final String schemeVersion = "2024.6";
     private String summary = "This is an unknown instance for which there is no summary.";
     private ArrayList<String> tags = null;
@@ -99,6 +101,10 @@ public class ZynstanceBuilder {
         this.version = version;
     }
 
+    public void setChangelogs(ArrayList<String> changelogs) {
+        this.changelogs = changelogs;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -137,6 +143,10 @@ public class ZynstanceBuilder {
 
     public void setInfoText(String infoText) {
         this.infoText = infoText;
+    }
+
+    public void setVersions(ArrayList<String> versions) {
+        this.versions = versions;
     }
 
     public void setTags(ArrayList<String> tags) {
@@ -219,17 +229,29 @@ public class ZynstanceBuilder {
         setInfoProperty(infoPath.summary,summary);
         setInfoProperty(infoPath.version,version);
 
+        if(changelogs!=null) {
+            setMetaProperty(metaPath.changelogs,changelogs);
+        }
         setMetaProperty(metaPath.description,description);
         setMetaProperty(metaPath.download,downloadUrl);
         if(forgeType!=null) {
             setMetaProperty(metaPath.forgeType,forgeType);
         }
         setMetaProperty(metaPath.id,id);
+        if(infoCard!=null) {
+            setMetaProperty(metaPath.infoCard,infoCard);
+        }
+        if(infoText!=null) {
+            setMetaProperty(metaPath.infoText,infoText);
+        }
         setMetaProperty(metaPath.isEditable,isEditable);
         setMetaProperty(metaPath.isHidden,isHidden);
         setMetaProperty(metaPath.location,location);
         setMetaProperty(metaPath.origin,indexUrl);
         setMetaProperty(metaPath.tags,tags);
+        if(versions!=null) {
+            setMetaProperty(metaPath.versions,versions);
+        }
 
         if(background!=null) {
             setResourceProperty(resourcePath.background, background);
@@ -269,6 +291,7 @@ public class ZynstanceBuilder {
     }
 
     public enum metaPath {
+        changelogs,
         description,
         download,
         forgeType,
@@ -279,7 +302,8 @@ public class ZynstanceBuilder {
         infoText,
         location,
         origin,
-        tags
+        tags,
+        versions
     }
 
     public enum resourcePath {

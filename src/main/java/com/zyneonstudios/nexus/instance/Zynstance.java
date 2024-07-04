@@ -10,6 +10,8 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private ArrayList<String> authors;
     private String background;
     private final Config config;
+    private ArrayList<String> changelogs;
+    private ArrayList<String> versions;
     private String description;
     private String downloadUrl;
     private String fabricVersion;
@@ -39,6 +41,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private void init() {
         this.authors = (ArrayList<String>)config.get("instance.info.authors");
         this.background = config.getString("instance.resources.background");
+        if(config.get("instance.meta.changelogs")!=null) {
+            this.changelogs = (ArrayList<String>)config.get("instance.info.changelogs");
+        } else {
+            this.changelogs = new ArrayList<>();
+        }
         this.description = config.getString("instance.meta.description");
         this.downloadUrl = config.getString("instance.meta.download");
         this.fabricVersion = config.getString("instance.versions.fabric");
@@ -52,6 +59,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.indexUrl = config.getString("instance.meta.origin");
         this.infoCard = config.getString("instance.meta.infoCard");
         this.infoText = config.getString("instance.meta.infoText");
+        if(config.get("instance.meta.versions")!=null) {
+            this.versions = (ArrayList<String>)config.get("instance.meta.versions");
+        } else {
+            this.versions = new ArrayList<>();
+        }
         this.logoUrl = config.getString("instance.resources.logo");
         this.minecraftVersion = config.getString("instance.versions.minecraft");
         this.name = config.getString("instance.info.name");
@@ -60,7 +72,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.version = config.getString("instance.info.version");
         this.summary = config.getString("instance.info.summary");
         this.schemeVersion = config.getString("scheme");
-        this.tags = (ArrayList<String>)config.get("instance.meta.tags");
+        if(config.get("instance.meta.tags")!=null) {
+            this.tags = (ArrayList<String>)config.get("instance.meta.tags");
+        } else {
+            this.tags = new ArrayList<>();
+        }
         this.thumbnailUrl = config.getString("instance.resources.thumbnail");
         if(quiltVersion!=null) {
             modloader = "Quilt";
@@ -102,6 +118,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     @Override
     public String getBackgroundUrl() {
         return background;
+    }
+
+    @Override
+    public ArrayList<String> getChangelogs() {
+        return changelogs;
     }
 
     @Override
@@ -210,6 +231,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     }
 
     @Override
+    public ArrayList<String> getVersions() {
+        return versions;
+    }
+
+    @Override
     public String getSchemeVersion() {
         return schemeVersion;
     }
@@ -242,6 +268,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setBackground(String background) {
         config.set("instance.resources.background",background);
         this.background = background;
+    }
+
+    public void setChangelogs(ArrayList<String> changelogs) {
+        config.set("instance.meta.changelogs",changelogs);
+        this.changelogs = changelogs;
     }
 
     public void setDescription(String description) {
@@ -326,6 +357,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public void setVersion(String version) {
         config.set("instance.info.version",version);
         this.version = version;
+    }
+
+    public void setVersions(ArrayList<String> versions) {
+        config.set("instance.meta.versions",versions);
+        this.versions = versions;
     }
 
     public void setSummary(String summary) {
