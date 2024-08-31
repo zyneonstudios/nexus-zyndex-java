@@ -4,7 +4,7 @@ import com.google.gson.*;
 import com.zyneonstudios.nexus.Main;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
 import com.zyneonstudios.nexus.modules.ReadableModule;
-import live.nerotv.shademebaby.utils.GsonUtil;
+import com.zyneonstudios.nexus.utilities.json.GsonUtility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,13 +36,13 @@ public class ReadableZyndex implements Index {
                             try {
                                 this.zynstances.add(new ReadableZynstance(e.getAsString()));
                             } catch (Exception er) {
-                                Main.logger.error("Couldn't initialize instance from index list: "+er.getMessage());
+                                Main.logger.err("Couldn't initialize instance from index list: "+er.getMessage());
                             }
                         }
                     }
                 }
             } catch (Exception e) {
-                Main.logger.error("Couldn't initialize index instances: "+e.getMessage());
+                Main.logger.err("Couldn't initialize index instances: "+e.getMessage());
                 this.zynstances = new ArrayList<>();
             }
 
@@ -55,17 +55,17 @@ public class ReadableZyndex implements Index {
                             try {
                                 this.modules.add(new ReadableModule(e.getAsString()));
                             } catch (Exception er) {
-                                Main.logger.error("Couldn't initialize module from index list: "+er.getMessage());
+                                Main.logger.err("Couldn't initialize module from index list: "+er.getMessage());
                             }
                         }
                     }
                 }
             } catch (Exception e) {
-                Main.logger.error("Couldn't initialize index modules: "+e.getMessage());
+                Main.logger.err("Couldn't initialize index modules: "+e.getMessage());
                 this.modules = new ArrayList<>();
             }
         } catch (Exception e) {
-            Main.logger.error("Couldn't initialize ReadableZyndex - JSON Format error: "+e.getMessage());
+            Main.logger.err("Couldn't initialize ReadableZyndex - JSON Format error: "+e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -73,7 +73,7 @@ public class ReadableZyndex implements Index {
     public ReadableZyndex(String url) {
         origin = url;
         try {
-            init(GsonUtil.getFromURL(url));
+            init(GsonUtility.getFromURL(url));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -82,7 +82,7 @@ public class ReadableZyndex implements Index {
     public ReadableZyndex(File file) {
         origin = file.getAbsolutePath();
         try {
-            init(GsonUtil.getFromFile(file));
+            init(GsonUtility.getFromFile(file));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

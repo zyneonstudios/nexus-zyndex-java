@@ -1,6 +1,6 @@
 package com.zyneonstudios.nexus.instance;
 
-import live.nerotv.shademebaby.file.Config;
+import com.zyneonstudios.nexus.utilities.storage.JsonStorage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
 
     private ArrayList<String> authors;
     private String background;
-    private final Config config;
+    private final JsonStorage config;
     private ArrayList<String> changelogs;
     private ArrayList<String> versions;
     private String description;
@@ -94,11 +94,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     public Zynstance(File file) {
         super(file);
         origin = file.getAbsolutePath();
-        config = new Config(file);
+        config = new JsonStorage(file);
         init();
     }
 
-    public Zynstance(Config config) {
+    public Zynstance(JsonStorage config) {
         super(config.getJsonFile());
         origin = config.getPath();
         this.config = config;

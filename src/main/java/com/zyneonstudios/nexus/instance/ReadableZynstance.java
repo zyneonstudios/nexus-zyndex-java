@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.zyneonstudios.nexus.Main;
-import live.nerotv.shademebaby.utils.GsonUtil;
+import com.zyneonstudios.nexus.utilities.json.GsonUtility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class ReadableZynstance implements Instance {
                 modloader = "Vanilla";
             }
         } catch (Exception e) {
-            Main.logger.error("Couldn't initialize ReadableZynstance - JSON Format error: "+e.getMessage());
+            Main.logger.err("Couldn't initialize ReadableZynstance - JSON Format error: "+e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -146,7 +146,7 @@ public class ReadableZynstance implements Instance {
     public ReadableZynstance(String url) {
         origin = url;
         try {
-            init(GsonUtil.getFromURL(url));
+            init(GsonUtility.getFromURL(url));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -155,7 +155,7 @@ public class ReadableZynstance implements Instance {
     public ReadableZynstance(File file) {
         origin = file.getAbsolutePath();
         try {
-            init(GsonUtil.getFromFile(file));
+            init(GsonUtility.getFromFile(file));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

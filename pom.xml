@@ -6,7 +6,7 @@
 
     <groupId>com.zyneonstudios</groupId>
     <artifactId>nexus-zyndex</artifactId>
-    <version>2024.8</version>
+    <version>2024.8.1</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -16,17 +16,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.zyneonstudios</groupId>
-            <artifactId>nexus-smblib</artifactId>
-            <version>2024.8</version>
-            <scope>compile</scope>
+            <groupId>com.zyneonstudios.nexus</groupId>
+            <artifactId>base-utilities</artifactId>
+            <version>2024.9-beta.1</version>
         </dependency>
     </dependencies>
 
     <distributionManagement>
         <repository>
             <id>zyneonstudios-repo</id>
-            <url>http://maven.zyneonstudios.com:8080/releases</url>
+            <url>https://maven.zyneonstudios.com/releases</url>
         </repository>
     </distributionManagement>
 

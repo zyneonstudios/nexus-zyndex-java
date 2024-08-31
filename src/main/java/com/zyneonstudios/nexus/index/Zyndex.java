@@ -3,7 +3,7 @@ package com.zyneonstudios.nexus.index;
 import com.google.gson.JsonArray;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
 import com.zyneonstudios.nexus.modules.ReadableModule;
-import live.nerotv.shademebaby.file.Config;
+import com.zyneonstudios.nexus.utilities.storage.JsonStorage;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 public class Zyndex extends ReadableZyndex implements Index {
 
-    private Config json;
+    private JsonStorage json;
 
     private String name = "";
     private String url = "";
@@ -20,11 +20,11 @@ public class Zyndex extends ReadableZyndex implements Index {
     private ArrayList<ReadableModule> modules;
 
     private void init() {
-        json.checkEntry("name","unnamed zynstance");
-        json.checkEntry("url","null");
-        json.checkEntry("owner","unknown");
-        json.checkEntry("instances",new JsonArray());
-        json.checkEntry("modules",new JsonArray());
+        json.ensure("name","unnamed zynstance");
+        json.ensure("url","null");
+        json.ensure("owner","unknown");
+        json.ensure("instances",new JsonArray());
+        json.ensure("modules",new JsonArray());
 
         name = json.getString("name");
         url = json.getString("url");
@@ -36,17 +36,17 @@ public class Zyndex extends ReadableZyndex implements Index {
 
     public Zyndex(File json) {
         super(json);
-        this.json = new Config(json);
+        this.json = new JsonStorage(json);
         init();
     }
 
-    public Zyndex(Config config) {
+    public Zyndex(JsonStorage config) {
         super(config.getJsonFile());
         this.json = config;
         init();
     }
 
-    public Config getJson() {
+    public JsonStorage getJson() {
         return json;
     }
 

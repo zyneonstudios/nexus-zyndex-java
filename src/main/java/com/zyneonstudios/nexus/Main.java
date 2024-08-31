@@ -1,11 +1,11 @@
 package com.zyneonstudios.nexus;
 
-import com.zyneonstudios.nexus.modules.ReadableModule;
-import live.nerotv.shademebaby.logger.Logger;
+import com.zyneonstudios.nexus.utilities.NexusUtilities;
+import com.zyneonstudios.nexus.utilities.logger.NexusLogger;
 
 public class Main {
 
-    public static Logger logger = new Logger("ZDX");
+    public static NexusLogger logger = NexusUtilities.getLogger();
 
     public static void main(String[] a) {
         logger.log("=======================================================");

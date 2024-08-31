@@ -5,7 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.zyneonstudios.nexus.Main;
-import live.nerotv.shademebaby.utils.GsonUtil;
+import com.zyneonstudios.nexus.utilities.json.GsonUtility;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -114,7 +114,7 @@ public class ReadableModule implements Module {
 
             scheme_version = root.get("scheme").getAsString();
         } catch (Exception e) {
-            Main.logger.error("Couldn't initialize ReadableModule - JSON Format error: "+e.getMessage());
+            Main.logger.err("Couldn't initialize ReadableModule - JSON Format error: "+e.getMessage());
             throw new RuntimeException(e);
         }
     }
@@ -122,7 +122,7 @@ public class ReadableModule implements Module {
     public ReadableModule(String url) {
         origin = url;
         try {
-            init(GsonUtil.getFromURL(url));
+            init(GsonUtility.getFromURL(url));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -131,7 +131,7 @@ public class ReadableModule implements Module {
     public ReadableModule(File file) {
         origin = file.getAbsolutePath();
         try {
-            init(GsonUtil.getFromFile(file));
+            init(GsonUtility.getFromFile(file));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

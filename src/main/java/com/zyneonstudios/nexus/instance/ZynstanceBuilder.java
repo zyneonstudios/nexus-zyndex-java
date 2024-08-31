@@ -1,6 +1,6 @@
 package com.zyneonstudios.nexus.instance;
 
-import live.nerotv.shademebaby.file.Config;
+import com.zyneonstudios.nexus.utilities.storage.JsonStorage;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -9,7 +9,7 @@ import java.util.Calendar;
 
 public class ZynstanceBuilder {
 
-    private final Config instance;
+    private final JsonStorage instance;
     private ArrayList<String> authors = null;
     private String background = null;
     private ArrayList<String> changelogs = null;
@@ -41,23 +41,23 @@ public class ZynstanceBuilder {
 
     public ZynstanceBuilder(String path) {
         if(path.toLowerCase().endsWith(".json")) {
-            instance = new Config(path);
+            instance = new JsonStorage(path);
         } else {
-            instance = new Config(path+"/instance.json");
+            instance = new JsonStorage(path+"/instance.json");
         }
         init();
     }
 
     public ZynstanceBuilder(File file) {
         if(file.isDirectory()) {
-            instance = new Config(file.getAbsolutePath()+"/instance.json");
+            instance = new JsonStorage(file.getAbsolutePath()+"/instance.json");
         } else {
-            instance = new Config(file);
+            instance = new JsonStorage(file);
         }
         init();
     }
 
-    public ZynstanceBuilder(Config config) {
+    public ZynstanceBuilder(JsonStorage config) {
         instance = config;
         init();
     }
