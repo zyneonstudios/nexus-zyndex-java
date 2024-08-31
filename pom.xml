@@ -6,7 +6,7 @@
 
     <groupId>com.zyneonstudios.nexus</groupId>
     <artifactId>zyndex-java</artifactId>
-    <version>2024.8.3</version>
+    <version>2024.8.4</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.zyneonstudios.nexus</groupId>
             <artifactId>base-utilities</artifactId>
-            <version>2024.9-beta.2</version>
+            <version>2024.9-beta.3</version>
         </dependency>
     </dependencies>
 
