@@ -20,7 +20,7 @@ public class Zyndex extends ReadableZyndex implements Index {
     private ArrayList<ReadableModule> modules;
 
     private void init() {
-        json.ensure("name","unnamed zynstance");
+        json.ensure("name","unnamed zyndex");
         json.ensure("url","null");
         json.ensure("owner","unknown");
         json.ensure("instances",new JsonArray());

@@ -4,127 +4,67 @@ import java.util.ArrayList;
 
 public interface Instance {
 
-    default String getAuthor() {
-        return null;
-    }
+    String getAuthor();
 
-    default ArrayList<String> getAuthors() {
-        return null;
-    }
+    ArrayList<String> getAuthors();
 
-    default String getBackgroundUrl() {
-        return null;
-    }
+    String getBackgroundUrl();
 
-    default ArrayList<String> getChangelogs() {
-        return null;
-    }
+    ArrayList<String> getChangelogs();
 
-    default String getDescription() {
-        return null;
-    }
+    String getDescription();
 
-    default String getDownloadUrl() {
-        return null;
-    }
+    String getDownloadUrl();
 
-    default String getFabricVersion() {
-        return null;
-    }
+    String getFabricVersion();
 
-    default String getForgeType() {
-        return null;
-    }
+    String getForgeType();
 
-    default String getForgeVersion() {
-        return null;
-    }
+    String getForgeVersion();
 
-    default String getIconUrl() {
-        return null;
-    }
+    String getIconUrl();
 
-    default Boolean isEditable() {
-        return null;
-    }
+    Boolean isEditable();
 
-    default Boolean isHidden() {
-        return null;
-    }
+    Boolean isHidden();
 
-    default String getId() {
-        return null;
-    }
+    Boolean forceUpdates();
 
-    default String getIndexUrl() {
-        return null;
-    }
+    String getId();
 
-    default String getInfoCard() {
-        return null;
-    }
+    String getIndexUrl();
 
-    default String getInfoText() {
-        return null;
-    }
+    String getInfoCard();
 
-    default String getLogoUrl() {
-        return null;
-    }
+    String getInfoText();
 
-    default String getMinecraftVersion() {
-        return null;
-    }
+    String getLogoUrl();
 
-    default String getModloader() {
-        return null;
-    }
+    String getMinecraftVersion();
 
-    default String getName() {
-        return null;
-    }
+    String getModloader();
 
-    default String getLocation() {
-        return null;
-    }
+    String getName();
 
-    default String getOrigin() {
-        return null;
-    }
+    String getLocation();
 
-    default String getNeoForgeVersion() {
-        return null;
-    }
+    String getOrigin();
 
-    default String getQuiltVersion() {
-        return null;
-    }
+    String getNeoForgeVersion();
 
-    default String getSummary() {
-        return null;
-    }
+    String getQuiltVersion();
 
-    default ArrayList<String> getTags() {
-        return null;
-    }
+    String getSummary();
 
-    default String getTagString() {
-        return null;
-    }
+    ArrayList<String> getTags();
 
-    default String getVersion() {
-        return null;
-    }
+    String getTagString();
 
-    default ArrayList<String> getVersions() {
-        return null;
-    }
+    String getVersion();
 
-    default String getThumbnailUrl() {
-        return null;
-    }
+    ArrayList<String> getVersions();
 
-    default String getSchemeVersion() {
-        return null;
-    }
+    String getThumbnailUrl();
+
+    String getSchemeVersion();
 }

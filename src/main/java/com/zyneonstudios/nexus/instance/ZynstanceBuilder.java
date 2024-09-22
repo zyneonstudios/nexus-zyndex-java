@@ -21,6 +21,7 @@ public class ZynstanceBuilder {
     private String icon = null;
     private boolean isEditable = false;
     private boolean isHidden = true;
+    private boolean forceUpdates = false;
     private String id = "unknown";
     private String infoCard = null;
     private String infoText = null;
@@ -77,6 +78,7 @@ public class ZynstanceBuilder {
         instance.set("instance.meta.id",id);
         instance.set("instance.meta.isEditable",isEditable);
         instance.set("instance.meta.isHidden",isHidden);
+        instance.set("instance.meta.forceUpdates",forceUpdates);
         location = "file://"+instance.getJsonFile().getAbsolutePath().replace("\\\\","\\").replace("\\","/");
         instance.set("instance.meta.location",location);
         origin = location;
@@ -127,6 +129,10 @@ public class ZynstanceBuilder {
 
     public void setHidden(boolean hidden) {
         isHidden = hidden;
+    }
+
+    public void setForceUpdates(boolean force) {
+
     }
 
     public void setLocationUrl(String locationUrl) {
@@ -246,6 +252,7 @@ public class ZynstanceBuilder {
         }
         setMetaProperty(metaPath.isEditable,isEditable);
         setMetaProperty(metaPath.isHidden,isHidden);
+        setMetaProperty(metaPath.forceUpdates,forceUpdates);
         setMetaProperty(metaPath.location,location);
         setMetaProperty(metaPath.origin,indexUrl);
         setMetaProperty(metaPath.tags,tags);
@@ -298,6 +305,7 @@ public class ZynstanceBuilder {
         id,
         isEditable,
         isHidden,
+        forceUpdates,
         infoCard,
         infoText,
         location,

@@ -25,6 +25,7 @@ public class ReadableZynstance implements Instance {
     private String icon = null;
     private Boolean isEditable = null;
     private Boolean isHidden = null;
+    private Boolean forceUpdates = null;
     private String id = null;
     private String indexUrl = null;
     private String infoCard = null;
@@ -72,6 +73,11 @@ public class ReadableZynstance implements Instance {
             }
             isEditable = meta.get("isEditable").getAsBoolean();
             isHidden = meta.get("isHidden").getAsBoolean();
+            if(meta.has("forceUpdates")) {
+                forceUpdates = meta.get("forceUpdates").getAsBoolean();
+            } else {
+                forceUpdates = false;
+            }
             id = meta.get("id").getAsString();
             if(meta.has("infoCard")) {
                 infoCard = meta.get("infoCard").getAsString();
@@ -214,6 +220,11 @@ public class ReadableZynstance implements Instance {
     @Override
     public Boolean isHidden() {
         return isHidden;
+    }
+
+    @Override
+    public Boolean forceUpdates() {
+        return forceUpdates;
     }
 
     @Override

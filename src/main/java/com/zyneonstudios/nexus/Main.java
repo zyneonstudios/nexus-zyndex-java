@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] a) {
         logger.log("=======================================================");
-        logger.log("This is the Zyndex API by Zyneon Nexus");
+        logger.log("This is the Zyndex Java API by Zyneon Nexus");
         logger.log("https://nexus.zyneonstudios.com");
         logger.log("https://github.com/zyneonstudios/nexus-zyndex-java");
         logger.log("=======================================================");

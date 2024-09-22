@@ -20,6 +20,7 @@ public class Zynstance extends ReadableZynstance implements Instance {
     private String iconUrl;
     private boolean isEditable;
     private boolean isHidden;
+    private boolean forceUpdates;
     private String id;
     private String indexUrl;
     private String infoCard;
@@ -54,6 +55,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.iconUrl = config.getString("instance.resources.icon");
         this.isEditable = config.getBoolean("instance.meta.isEditable");
         this.isHidden = config.getBoolean("instance.meta.isHidden");
+        if(config.get("instance.meta.forceUpdates")!=null) {
+            this.forceUpdates = config.getBoolean("instance.meta.forceUpdates");
+        } else {
+            this.forceUpdates = false;
+        }
         this.id = config.getString("instance.meta.id");
         this.location = config.getString("instance.meta.location");
         this.indexUrl = config.getString("instance.meta.origin");
@@ -158,6 +164,11 @@ public class Zynstance extends ReadableZynstance implements Instance {
     @Override
     public Boolean isHidden() {
         return isHidden;
+    }
+
+    @Override
+    public Boolean forceUpdates() {
+        return forceUpdates;
     }
 
     @Override
@@ -300,14 +311,19 @@ public class Zynstance extends ReadableZynstance implements Instance {
         this.forgeVersion = forgeVersion;
     }
 
-    public void setEditable(Boolean editable) {
+    public void setEditable(boolean editable) {
         config.set("instance.meta.isEditable",editable);
         isEditable = editable;
     }
 
-    public void setHidden(Boolean hidden) {
+    public void setHidden(boolean hidden) {
         config.set("instance.meta.isHidden",hidden);
         isHidden = hidden;
+    }
+
+    public void setForceUpdates(boolean shouldForce) {
+        config.set("instance.meta.forceUpdates",shouldForce);
+        forceUpdates = shouldForce;
     }
 
     public void setId(String id) {
