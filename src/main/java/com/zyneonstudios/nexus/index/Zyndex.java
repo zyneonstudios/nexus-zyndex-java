@@ -156,7 +156,7 @@ public class Zyndex extends ReadableZyndex implements Index {
         setModules(modules);
     }
 
-    public void removeInstance(ReadableModule module) {
+    public void removeModule(ReadableModule module) {
         ArrayList<ReadableModule> modules = this.modules;
         modules.remove(module);
         setModules(modules);
