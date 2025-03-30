@@ -148,7 +148,7 @@ public class Zyndex extends ReadableZyndex implements Index {
         System.gc();
     }
 
-    public void addInstance(ReadableModule module) {
+    public void addModule(ReadableModule module) {
         ArrayList<ReadableModule> modules = this.modules;
         if(!modules.contains(module)) {
             modules.add(module);
