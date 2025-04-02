@@ -42,9 +42,12 @@ public class ReadableModule implements Module {
     private String scheme_version = null;
     private final String origin;
 
+    private String json = "{}";
+
     private void init(String json_) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject root = gson.fromJson(json_, JsonObject.class);
+        json = root.toString();
 
         try {
             JsonObject json = root.get("module").getAsJsonObject();
@@ -249,5 +252,10 @@ public class ReadableModule implements Module {
     @Override
     public String getSchemeVersion() {
         return scheme_version;
+    }
+
+    @Override
+    public String getJson() {
+        return json;
     }
 }

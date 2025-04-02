@@ -67,4 +67,6 @@ public interface Instance {
     String getThumbnailUrl();
 
     String getSchemeVersion();
+
+    String getJson();
 }

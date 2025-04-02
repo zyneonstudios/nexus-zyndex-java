@@ -1,5 +1,6 @@
 package com.zyneonstudios.nexus.index;
 
+import com.zyneonstudios.nexus.instance.Instance;
 import com.zyneonstudios.nexus.instance.ReadableZynstance;
 import com.zyneonstudios.nexus.modules.ReadableModule;
 

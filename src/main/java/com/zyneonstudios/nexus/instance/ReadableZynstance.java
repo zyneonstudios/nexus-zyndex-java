@@ -43,9 +43,13 @@ public class ReadableZynstance implements Instance {
     private String thumbnail = null;
     private String schemeVersion = null;
 
+    private String json = "{}";
+
     private void init(String json) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonObject root = gson.fromJson(json, JsonObject.class);
+        this.json = root.toString();
+
         try {
             JsonObject json1 = root.get("instance").getAsJsonObject();
 
@@ -325,5 +329,10 @@ public class ReadableZynstance implements Instance {
     @Override
     public String getSchemeVersion() {
         return schemeVersion;
+    }
+
+    @Override
+    public String getJson() {
+        return json;
     }
 }

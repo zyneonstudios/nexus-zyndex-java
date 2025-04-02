@@ -91,4 +91,6 @@ public interface Module {
     default String getSchemeVersion() {
         return null;
     }
+
+    String getJson();
 }
