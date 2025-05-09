@@ -10,6 +10,7 @@ import java.util.Calendar;
 public class ZynstanceBuilder {
 
     private final JsonStorage instance;
+
     private ArrayList<String> authors = null;
     private String background = null;
     private ArrayList<String> changelogs = null;
@@ -35,7 +36,7 @@ public class ZynstanceBuilder {
     private String neoForgeVersion = null;
     private String version = new SimpleDateFormat("yyyy.M.d").format(Calendar.getInstance().getTime());;
     private ArrayList<String> versions = null;
-    private final String schemeVersion = "2024.6";
+    private final String schemeVersion = "2024.7";
     private String summary = "This is an unknown instance for which there is no summary.";
     private ArrayList<String> tags = null;
     private String thumbnail = null;
